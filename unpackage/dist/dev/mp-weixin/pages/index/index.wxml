@@ -1,0 +1,1 @@
+<view class="login"><swiper interval="{{3000}}" duration="{{1000}}" indicator-dots="{{false}}" autoplay="true"><block wx:for="{{Lunbo}}" wx:for-item="item" wx:for-index="__i0__"><swiper-item><navigator url="{{'../detail/detail?id='+item._id}}"><image src="{{item.address}}"></image></navigator></swiper-item></block></swiper></view>

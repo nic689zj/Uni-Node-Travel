@@ -1,0 +1,28 @@
+
+.divide{
+    padding-bottom: 1px solid #fff;
+}
+.title {
+    text-align: center;
+}
+.contain {
+    height: 80rpx;
+}
+.Scancode {
+    height: 80rpx;
+    font-size: 39rpx;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+}
+.pl {
+    margin-left: 30rpx;
+}
+
