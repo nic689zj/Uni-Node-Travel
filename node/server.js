@@ -5,6 +5,8 @@ const bodyParser = require ("body-parser");
 const passport = require("passport");  
 require("./config/passport")(passport); 
 const app=express();
+var cors=require("cors");
+app.use(cors()); 
 const users=require('./routers/users')
 const shouye=require('./routers/shouye')
 // 使用body-parser中间件

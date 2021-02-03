@@ -1,6 +1,24 @@
 
+.comment_content{
+    margin-bottom: 50rpx;
+}
+.content_contain{
+   background-color: #F1F1F1;
+}
+.time{
+    font-size: 25rpx;
+}
+.avator{
+      width: 80rpx;
+      height: 80rpx;
+      border-radius: 50%;
+      vertical-align: middle;
+      display: inline-block;
+}
 .divide{
-    padding-bottom: 1px solid #fff;
+     height: 40rpx;
+     width: 100rpx;
+    padding-bottom: 1rpx solid black;
 }
 .title {
     text-align: center;

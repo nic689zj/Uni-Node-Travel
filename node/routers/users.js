@@ -40,7 +40,6 @@ router.get('current',(req,res)=>{
     res.json({msg:"success"})
 })
 router.post('/login',function(req,res){
-    console.log(req.body)
     var body=req.body
    const name=body.name
    const password=body.password
@@ -51,7 +50,7 @@ router.post('/login',function(req,res){
        }
        bcrypt.compare(password,user.password).then(isMatch=>{
            if(isMatch){
-               const rule={id:user.id,name:user.name}
+               const rule={id:user.id,name:user.name,avator:user.avator,description:user.description}
               jwt.sign(rule,'secret',{expiresIn:36000},(err,token)=>{
                   res.json({
                       success:true,

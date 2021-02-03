@@ -23,7 +23,7 @@ router.get(
     var current_time =  moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
 console.log(current_time)
     console.log(req.query.comment)
-    Lunbo.updateOne({_id:req.query.id},{$push:{comments:{comment:req.query.comment,date:current_time}}})
+    Lunbo.updateOne({_id:req.query.id},{$push:{comments:{comment:req.query.comment,date:current_time,name:req.query.name,avator:req.query.avator}}})
       .then(lunbo => {
         res.json(lunbo);
       }).catch(err => res.status(404).json(err));
