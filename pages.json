@@ -22,6 +22,15 @@
             }
 
         }
+        ,{
+            "path" : "pages/community/community",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
     "tabBar": {
         "color": "#7A7E83",
@@ -34,6 +43,11 @@
             "selectedIconPath": "/static/jia_.png",
             "text": "首页"
         }, {
+            "pagePath":"pages/community/community",
+            "iconPath": "/static/community.png",
+            "selectedIconPath": "static/community_.png",
+            "text": "社区"
+        },{
             "pagePath":"pages/personal/personal",
             "iconPath": "/static/yong.png",
             "selectedIconPath": "/static/yong_.png",

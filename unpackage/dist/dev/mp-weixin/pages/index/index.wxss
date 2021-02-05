@@ -1,0 +1,15 @@
+
+.index_function image{
+    width: 70px;
+    height: 70px;
+}
+.function{
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+}
+

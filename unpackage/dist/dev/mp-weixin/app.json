@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/detail/detail",
-    "pages/personal/personal"
+    "pages/personal/personal",
+    "pages/community/community"
   ],
   "subPackages": [],
   "window": {
@@ -24,6 +25,12 @@
         "text": "首页"
       },
       {
+        "pagePath": "pages/community/community",
+        "iconPath": "/static/community.png",
+        "selectedIconPath": "static/community_.png",
+        "text": "社区"
+      },
+      {
         "pagePath": "pages/personal/personal",
         "iconPath": "/static/yong.png",
         "selectedIconPath": "/static/yong_.png",
@@ -32,5 +39,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap24.json"
+  "sitemapLocation": "sitemap19.json"
 }

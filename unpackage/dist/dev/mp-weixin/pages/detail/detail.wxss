@@ -1,23 +1,23 @@
 
-.comment_content{
+.comment_content {
     margin-bottom: 50rpx;
 }
-.content_contain{
-   background-color: #F1F1F1;
+.content_contain {
+    background-color: #F1F1F1;
 }
-.time{
+.time {
     font-size: 25rpx;
 }
-.avator{
-      width: 80rpx;
-      height: 80rpx;
-      border-radius: 50%;
-      vertical-align: middle;
-      display: inline-block;
+.avator {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    vertical-align: middle;
+    display: inline-block;
 }
-.divide{
-     height: 40rpx;
-     width: 100rpx;
+.divide {
+    height: 40rpx;
+    width: 100rpx;
     padding-bottom: 1rpx solid black;
 }
 .title {

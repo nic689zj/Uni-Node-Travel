@@ -130,45 +130,54 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var ygcComment = function ygcComment() {__webpack_require__.e(/*! require.ensure | components/ygc-comment */ "components/ygc-comment").then((function () {return resolve(__webpack_require__(/*! ../../components/ygc-comment.vue */ 50));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
+  components: {
+    ygcComment: ygcComment },
+
   computed: {
     user: function user() {
       return this.$store.getters.user;
+    },
+    islogin: function islogin() {
+      return this.$store.state.isAuthenticated;
     } },
 
   data: function data() {
@@ -188,19 +197,43 @@ var _default =
     then(function (res) {return _this.content = res.data;});
   },
   methods: {
-    getData: function getData() {var _this2 = this;
+    toggleMask: function toggleMask(type) {
+      this.$refs.ygcComment.toggleMask(type);
+    },
+    pubComment: function pubComment(commentContent1) {var _this2 = this;
+      var that = this;
+      this.$myRequest({
+        url: '/shouye/addcomment',
+        data: {
+          id: this.id,
+          comment: commentContent1,
+          name: that.$store.getters.user.name,
+          avator: that.$store.getters.user.avator } }).
+
+      then(function (res) {
+        _this2.comment = '';
+        uni.showToast({
+          title: '评论成功',
+          duration: 2000 });
+
+        _this2.getData();
+      });
+    },
+    getData: function getData() {var _this3 = this;
       this.$myRequest({
         url: '/shouye/content',
         data: {
           id: this.id } }).
 
-      then(function (res) {_this2.content = res.data;
+      then(function (res) {
+        _this3.content = res.data;
+        _this3.toggleMask('none');
         uni.pageScrollTo({
           scrollTop: 99999999999 });
-      });
 
+      });
     },
-    addcomment: function addcomment() {var _this3 = this;
+    addcomment: function addcomment() {var _this4 = this;
       var that = this;
       this.$myRequest({
         url: '/shouye/addcomment',
@@ -211,12 +244,12 @@ var _default =
           avator: that.$store.getters.user.avator } }).
 
       then(function (res) {
-        _this3.comment = '';
+        _this4.comment = '';
         uni.showToast({
-          title: '添加成功',
+          title: '评论成功',
           duration: 2000 });
 
-        _this3.getData();
+        _this4.getData();
       });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

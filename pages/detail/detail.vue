@@ -10,33 +10,42 @@
         <view class="title">
             {{content.essay}}
         </view>
-        
+
         <view class="content_contain">
             <view class="divide">
                 <i class='iconfont icon-pinglun1'></i>评论区:
             </view>
             <view v-for="(item,index) in content.comments" :key="index" class="comment_content">
-                <view><image :src="item.avator" mode="" class="avator"></image>{{item.name}}</view>
+                <view>
+                    <image :src=item.avator mode="" class="avator"></image>{{item.name}}
+                </view>
                 <view>{{item.comment}}</view>
                 <view class="time">{{item.date}}</view>
             </view>
         </view>
-        
-        
+
+
         <view class="contain">
-            <view class="Scancode"> <i class='iconfont icon-pinglun'></i><input type="text" class="pl" placeholder='请输入您的评论'
-                    focus="true" v-model="comment">
-                <button type="primary" @click="addcomment" size="mini" >发表评论</button>
+            <view class="Scancode"> <i class='iconfont icon-pinglun'></i><input type="text" class="pl" :placeholder="islogin?'请输入评论':'××××请登录后再评论'"
+                    @focus="toggleMask('show')" v-model="comment" :disabled='!islogin'>
             </view>
         </view>
+        <ygc-comment ref="ygcComment" :placeholder="'发布评论'" @pubComment="pubComment"></ygc-comment>
     </view>
 </template>
 
 <script>
+    import ygcComment from '../../components/ygc-comment.vue';
     export default {
-        computed:{
-            user(){
+        components: {
+            ygcComment
+        },
+        computed: {
+            user() {
                 return this.$store.getters.user;
+            },
+            islogin(){
+                return this.$store.state.isAuthenticated
             },
         },
         data() {
@@ -47,7 +56,7 @@
             }
         },
         onLoad(options) {
-            this.id=options.id
+            this.id = options.id
             this.$myRequest({
                 url: '/shouye/content',
                 data: {
@@ -56,32 +65,56 @@
             }).then(res => this.content = res.data)
         },
         methods: {
+            toggleMask(type) {
+                this.$refs.ygcComment.toggleMask(type);
+            },
+            pubComment(commentContent1) {
+                var that = this;
+                this.$myRequest({
+                    url: '/shouye/addcomment',
+                    data: {
+                        id: this.id,
+                        comment: commentContent1,
+                        name: that.$store.getters.user.name,
+                        avator: that.$store.getters.user.avator
+                    }
+                }).then(res => {
+                    this.comment = '';
+                    uni.showToast({
+                        title: '评论成功',
+                        duration: 2000
+                    });
+                    this.getData()
+                })
+            },
             getData() {
                 this.$myRequest({
                     url: '/shouye/content',
                     data: {
                         id: this.id,
                     }
-                }).then(res =>{ this.content = res.data;
-                uni.pageScrollTo({
-                    scrollTop: 99999999999
-                })}
-                )
+                }).then(res => {
+                    this.content = res.data;
+                    this.toggleMask('none');
+                    uni.pageScrollTo({
+                        scrollTop: 99999999999
+                    });
+                })
             },
             addcomment() {
-               var that=this;
+                var that = this;
                 this.$myRequest({
                     url: '/shouye/addcomment',
                     data: {
                         id: this.id,
                         comment: this.comment,
-                        name:that.$store.getters.user.name,
-                        avator:that.$store.getters.user.avator
+                        name: that.$store.getters.user.name,
+                        avator: that.$store.getters.user.avator
                     }
                 }).then(res => {
-                    this.comment='';
+                    this.comment = '';
                     uni.showToast({
-                        title:'添加成功',
+                        title: '评论成功',
                         duration: 2000
                     });
                     this.getData()
@@ -92,30 +125,37 @@
 </script>
 
 <style>
-    .comment_content{
+    .comment_content {
         margin-bottom: 50rpx;
     }
-    .content_contain{
-       background-color: #F1F1F1;
+
+    .content_contain {
+        background-color: #F1F1F1;
     }
-    .time{
+
+    .time {
         font-size: 25rpx;
     }
-    .avator{
-          width: 80rpx;
-          height: 80rpx;
-          border-radius: 50%;
-          vertical-align: middle;
-          display: inline-block;
+
+    .avator {
+        width: 80rpx;
+        height: 80rpx;
+        border-radius: 50%;
+        vertical-align: middle;
+        display: inline-block;
     }
-    .divide{
-         height: 40rpx;
-         width: 100rpx;
-        padding-bottom: 1rpx solid black;;
+
+    .divide {
+        height: 40rpx;
+        width: 100rpx;
+        padding-bottom: 1rpx solid black;
+        ;
     }
+
     .title {
         text-align: center;
     }
+
     .contain {
         height: 80rpx;
     }
